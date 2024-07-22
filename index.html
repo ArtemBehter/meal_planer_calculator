@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Meal Planner Calculator</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Pacifico&family=Roboto:wght@400;700&display=swap');
+
+        body {
+            font-family: 'Roboto', sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+            background: linear-gradient(135deg, #89f7fe 0%, #66a6ff 100%);
+        }
+        .container {
+            background: white;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+            max-width: 90%;
+            width: 400px;
+            text-align: center;
+            transition: transform 0.5s ease, box-shadow 0.5s ease;
+        }
+        .container:hover {
+            transform: scale(1.05);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3);
+        }
+        .header-title {
+            font-family: 'Pacifico', cursive;
+            color: #66a6ff;
+            margin-bottom: 20px;
+        }
+        .question {
+            margin-bottom: 20px;
+        }
+        .main-course p {
+            color: #5cb85c;
+        }
+        .side-dish p {
+            color: #5bc0de;
+        }
+        .servings p {
+            color: #f0ad4e;
+        }
+        .extras p {
+            color: #d9534f;
+        }
+        .question-main-course p, .question-side-dish p, .question-servings p, .question-extras p {
+            margin: 0 0 10px;
+            font-weight: bold;
+            font-size: 18px;
+        }
+        .question-main-course p {
+            color: #5cb85c;
+        }
+        .question-side-dish p {
+            color: #5bc0de;
+        }
+        .question-servings p {
+            color: #f0ad4e;
+        }
+        .question-extras p {
+            color: #d9534f;
+        }
+        .slider-container {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+        .number-input {
+            width: 60px;
+            padding: 5px;
+            border-radius: 10px;
+            border: 1px solid #66a6ff;
+        }
+        .range-slider {
+            width: 100%;
+            margin: 0 10px;
+            -webkit-appearance: none;
+            height: 8px;
+            background: #66a6ff;
+            outline: none;
+            opacity: 0.7;
+            transition: opacity 0.2s;
+        }
+        .range-slider::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            appearance: none;
+            width: 25px;
+            height: 25px;
+            background: #66a6ff;
+            cursor: pointer;
+            border-radius: 50%;
+            box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+            transition: background 0.3s ease;
+        }
+        .range-slider::-webkit-slider-thumb:hover {
+            background: #5cb85c;
+        }
+        .range-slider::-moz-range-thumb {
+            width: 25px;
+            height: 25px;
+            background: #66a6ff;
+            cursor: pointer;
+            border-radius: 50%;
+            box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+            transition: background 0.3s ease;
+        }
+        .range-slider::-moz-range-thumb:hover {
+            background: #5cb85c;
+        }
+        .buttons {
+            display: flex;
+            justify-content: space-between;
+        }
+        .button {
+            padding: 10px 20px;
+            border: none;
+            background: #66a6ff;
+            color: white;
+            border-radius: 25px;
+            cursor: pointer;
+            transition: background 0.3s, transform 0.3s, box-shadow 0.3s;
+            font-family: 'Pacifico', cursive;
+        }
+        .button:hover {
+            background: #5cb85c;
+            transform: translateY(-5px);
+            box-shadow: 0 10px 15px rgba(0, 0, 0, 0.1);
+        }
+        .button:disabled {
+            background: #ccc;
+            cursor: not-allowed;
+        }
+        .result {
+            font-family: 'Pacifico', cursive;
+            font-size: 28px;
+            margin-top: 20px;
+            color: #66a6ff;
+            opacity: 0;
+            transition: opacity 1s;
+        }
+        .show-result {
+            opacity: 1;
+        }
+        .radio-input, .checkbox-input {
+            display: none;
+        }
+        .radio-label, .checkbox-label {
+            position: relative;
+            padding-left: 35px;
+            cursor: pointer;
+            user-select: none;
+            font-size: 16px;
+            color: #333;
+            display: block;
+            margin-bottom: 10px;
+        }
+        .radio-label:before, .checkbox-label:before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 20px;
+            height: 20px;
+            border: 2px solid #66a6ff;
+            border-radius: 50%;
+            background: white;
+            transition: background 0.3s, border-color 0.3s;
+        }
+        .checkbox-label:before {
+            border-radius: 4px;
+        }
+        .radio-input:checked + .radio-label:before, .checkbox-input:checked + .checkbox-label:before {
+            background: #66a6ff;
+            border-color: #66a6ff;
+        }
+        .radio-input:checked + .radio-label:after, .checkbox-input:checked + .checkbox-label:after {
+            content: '';
+            position: absolute;
+            left: 15%;
+            top: 50%;
+            transform: translate(-50%, -50%);
+            width: 10px;
+            height: 10px;
+            background: white;
+            border-radius: 50%;
+        }
+        .checkbox-input:checked + .checkbox-label:after {
+            width: 10px;
+            height: 10px;
+            border-radius: 2px;
+        }
+        @media (max-width: 500px) {
+            .container {
+                padding: 20px;
+                width: 90%;
+            }
+            .question p {
+                font-size: 16px;
+            }
+            .result {
+                font-size: 24px;
+            }
+            .button {
+                padding: 8px 15px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h1 class="header-title">Meal Planner Calculator</h1>
+    <div class="question main-course">
+        <p class="question-main-course">Main Course: Choose an option</p>
+        <input type="radio" id="chicken" name="mainCourse" value="300" class="radio-input">
+        <label for="chicken" class="radio-label">Chicken Breast (300 cal)</label>
+        <input type="radio" id="beef" name="mainCourse" value="400" class="radio-input">
+        <label for="beef" class="radio-label">Beef Steak (400 cal)</label>
+        <input type="radio" id="veggies" name="mainCourse" value="250" class="radio-input">
+        <label for="veggies" class="radio-label">Grilled Vegetables (250 cal)</label>
+    </div>
+
+    <div class="question side-dish">
+        <p class="question-side-dish">Side Dish: Choose an option</p>
+        <input type="radio" id="rice" name="sideDish" value="150" class="radio-input">
+        <label for="rice" class="radio-label">Rice (150 cal)</label>
+        <input type="radio" id="potatoes" name="sideDish" value="200" class="radio-input">
+        <label for="potatoes" class="radio-label">Mashed Potatoes (200 cal)</label>
+        <input type="radio" id="salad" name="sideDish" value="100" class="radio-input">
+        <label for="salad" class="radio-label">Salad (100 cal)</label>
+    </div>
+
+    <div class="question servings">
+        <p class="question-servings">Number of Servings (1-5):</p>
+        <div class="slider-container">
+            <input type="number" id="numberInput" min="1" max="5" value="1" class="number-input">
+            <input type="range" id="numberSlider" min="1" max="5" value="1" class="range-slider">
+        </div>
+    </div>
+
+    <div class="question extras">
+        <p class="question-extras">Extras:</p>
+        <input type="checkbox" id="extraCalc" class="checkbox-input">
+        <label for="extraCalc" class="checkbox-label">Include Dessert (+300 cal)</label>
+    </div>
+
+    <div class="buttons">
+        <button id="resetButton" class="button">Reset</button>
+        <button id="calculateButton" class="button">Calculate</button>
+    </div>
+
+    <div class="result" id="result">Total Calories: 0</div>
+</div>
+
+<script>
+    const numberInput = document.getElementById('numberInput');
+    const numberSlider = document.getElementById('numberSlider');
+    const resultDiv = document.getElementById('result');
+
+    numberInput.addEventListener('input', () => numberSlider.value = numberInput.value);
+    numberSlider.addEventListener('input', () => numberInput.value = numberSlider.value);
+
+    document.getElementById('calculateButton').addEventListener('click', () => {
+        const mainCourse = document.querySelector('input[name="mainCourse"]:checked');
+        const sideDish = document.querySelector('input[name="sideDish"]:checked');
+        const numberValue = parseInt(numberInput.value);
+        const extraCalc = document.getElementById('extraCalc').checked;
+
+        if (mainCourse && sideDish) {
+            let result = (parseInt(mainCourse.value) + parseInt(sideDish.value)) * numberValue;
+            if (extraCalc) {
+                result += 300;
+            }
+            resultDiv.innerText = 'Total Calories: ' + result;
+            resultDiv.classList.add('show-result');
+        } else {
+            alert('Please make selections for all options.');
+        }
+    });
+
+    document.getElementById('resetButton').addEventListener('click', () => {
+        document.querySelectorAll('input[type="radio"]:checked').forEach(input => input.checked = false);
+        numberInput.value = 1;
+        numberSlider.value = 1;
+        document.getElementById('extraCalc').checked = false;
+        resultDiv.innerText = 'Total Calories: 0';
+        resultDiv.classList.remove('show-result');
+    });
+</script>
+
+</body>
+</html>
