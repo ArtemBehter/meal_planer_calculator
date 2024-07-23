@@ -35,123 +35,32 @@
             color: #66a6ff;
             margin-bottom: 20px;
         }
-        .question {
+        .form__question {
             margin-bottom: 20px;
         }
-        .main-course p {
-            color: #5cb85c;
-        }
-        .side-dish p {
-            color: #5bc0de;
-        }
-        .servings p {
-            color: #f0ad4e;
-        }
-        .extras p {
-            color: #d9534f;
-        }
-        .question-main-course p, .question-side-dish p, .question-servings p, .question-extras p {
-            margin: 0 0 10px;
+        .form__question-title {
+            margin-bottom: 10px;
             font-weight: bold;
             font-size: 18px;
+            text-align: center;
         }
-        .question-main-course p {
+        .form__question-title--main-course {
             color: #5cb85c;
         }
-        .question-side-dish p {
+        .form__question-title--side-dish {
             color: #5bc0de;
         }
-        .question-servings p {
+        .form__question-title--servings {
             color: #f0ad4e;
         }
-        .question-extras p {
+        .form__question-title--extras {
             color: #d9534f;
         }
-        .slider-container {
+        .form__question-content {
             display: flex;
-            align-items: center;
-            justify-content: space-between;
+            flex-direction: column;
         }
-        .number-input {
-            width: 60px;
-            padding: 5px;
-            border-radius: 10px;
-            border: 1px solid #66a6ff;
-        }
-        .range-slider {
-            width: 100%;
-            margin: 0 10px;
-            -webkit-appearance: none;
-            height: 8px;
-            background: #66a6ff;
-            outline: none;
-            opacity: 0.7;
-            transition: opacity 0.2s;
-        }
-        .range-slider::-webkit-slider-thumb {
-            -webkit-appearance: none;
-            appearance: none;
-            width: 25px;
-            height: 25px;
-            background: #66a6ff;
-            cursor: pointer;
-            border-radius: 50%;
-            box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
-            transition: background 0.3s ease;
-        }
-        .range-slider::-webkit-slider-thumb:hover {
-            background: #5cb85c;
-        }
-        .range-slider::-moz-range-thumb {
-            width: 25px;
-            height: 25px;
-            background: #66a6ff;
-            cursor: pointer;
-            border-radius: 50%;
-            box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
-            transition: background 0.3s ease;
-        }
-        .range-slider::-moz-range-thumb:hover {
-            background: #5cb85c;
-        }
-        .buttons {
-            display: flex;
-            justify-content: space-between;
-        }
-        .button {
-            padding: 10px 20px;
-            border: none;
-            background: #66a6ff;
-            color: white;
-            border-radius: 25px;
-            cursor: pointer;
-            transition: background 0.3s, transform 0.3s, box-shadow 0.3s;
-            font-family: 'Pacifico', cursive;
-        }
-        .button:hover {
-            background: #5cb85c;
-            transform: translateY(-5px);
-            box-shadow: 0 10px 15px rgba(0, 0, 0, 0.1);
-        }
-        .button:disabled {
-            background: #ccc;
-            cursor: not-allowed;
-        }
-        .result {
-            font-family: 'Pacifico', cursive;
-            font-size: 28px;
-            margin-top: 20px;
-            color: #66a6ff;
-            opacity: 0;
-            transition: opacity 1s;
-        }
-        .show-result {
-            opacity: 1;
-        }
-        .radio-input, .checkbox-input {
-            display: none;
-        }
-        .radio-label, .checkbox-label {
+        .form__radio-label, .form__checkbox-label {
             position: relative;
             padding-left: 35px;
             cursor: pointer;
@@ -159,9 +68,11 @@
             font-size: 16px;
             color: #333;
             display: block;
+            text-align: left;
             margin-bottom: 10px;
+            width: 100%;
         }
-        .radio-label:before, .checkbox-label:before {
+        .form__radio-label:before, .form__checkbox-label:before {
             content: '';
             position: absolute;
             left: 0;
@@ -174,41 +85,134 @@
             background: white;
             transition: background 0.3s, border-color 0.3s;
         }
-        .checkbox-label:before {
+        .form__checkbox-label:before {
             border-radius: 4px;
         }
-        .radio-input:checked + .radio-label:before, .checkbox-input:checked + .checkbox-label:before {
+        .form__radio-input:checked + .form__radio-label:before, .form__checkbox-input:checked + .form__checkbox-label:before {
             background: #66a6ff;
             border-color: #66a6ff;
         }
-        .radio-input:checked + .radio-label:after, .checkbox-input:checked + .checkbox-label:after {
+        .form__radio-input:checked + .form__radio-label:after, .form__checkbox-input:checked + .form__checkbox-label:after {
             content: '';
             position: absolute;
-            left: 15%;
-            top: 50%;
             transform: translate(-50%, -50%);
             width: 10px;
             height: 10px;
             background: white;
             border-radius: 50%;
         }
-        .checkbox-input:checked + .checkbox-label:after {
+        .form__checkbox-input:checked + .form__checkbox-label:after {
             width: 10px;
             height: 10px;
             border-radius: 2px;
+        }
+        .form__slider-container {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-top: 20px;
+        }
+        .form__number-input {
+            width: 60px;
+            padding: 5px;
+            border-radius: 10px;
+            border: 1px solid #66a6ff;
+        }
+        .form__range-slider {
+            width: 100%;
+            margin: 0 10px;
+            -webkit-appearance: none;
+            height: 8px;
+            background: #66a6ff;
+            outline: none;
+            opacity: 0.7;
+            transition: opacity 0.2s;
+        }
+        .form__range-slider::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            appearance: none;
+            width: 25px;
+            height: 25px;
+            background: #66a6ff;
+            cursor: pointer;
+            border-radius: 50%;
+            box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+            transition: background 0.3s ease;
+        }
+        .form__range-slider::-webkit-slider-thumb:hover {
+            background: #5cb85c;
+        }
+        .form__range-slider::-moz-range-thumb {
+            width: 25px;
+            height: 25px;
+            background: #66a6ff;
+            cursor: pointer;
+            border-radius: 50%;
+            box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+            transition: background 0.3s ease;
+        }
+        .form__range-slider::-moz-range-thumb:hover {
+            background: #5cb85c;
+        }
+        .form__buttons {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 20px;
+        }
+        .form__button {
+            padding: 10px 20px;
+            border: none;
+            background: #66a6ff;
+            color: white;
+            border-radius: 25px;
+            cursor: pointer;
+            transition: background 0.3s, transform 0.3s, box-shadow 0.3s;
+            font-family: 'Pacifico', cursive;
+        }
+        .form__button:hover {
+            background: #5cb85c;
+            transform: translateY(-5px);
+            box-shadow: 0 10px 15px rgba(0, 0, 0, 0.1);
+        }
+        .form__button:disabled {
+            background: #ccc;
+            cursor: not-allowed;
+        }
+        .form__result-container {
+            display: none;
+            font-family: 'Pacifico', cursive;
+            font-size: 28px;
+            margin-top: 20px;
+            color: #66a6ff;
+            opacity: 0;
+            max-height: 0;
+            overflow: hidden;
+        }
+        .form__result-container--show {
+            display: block;
+            opacity: 1;
+            max-height: 100px; /* Adjust based on expected content height */
+            animation: fadeIn 1s ease-in-out;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; max-height: 0; }
+            to { opacity: 1; max-height: 100px; }
+        }
+        .form__radio-input, .form__checkbox-input {
+            display: none;
         }
         @media (max-width: 500px) {
             .container {
                 padding: 20px;
                 width: 90%;
             }
-            .question p {
+            .form__question-title {
                 font-size: 16px;
             }
-            .result {
+            .form__result-container {
                 font-size: 24px;
             }
-            .button {
+            .form__button {
                 padding: 8px 15px;
             }
         }
@@ -218,81 +222,91 @@
 
 <div class="container">
     <h1 class="header-title">Meal Planner Calculator</h1>
-    <div class="question main-course">
-        <p class="question-main-course">Main Course: Choose an option</p>
-        <input type="radio" id="chicken" name="mainCourse" value="300" class="radio-input">
-        <label for="chicken" class="radio-label">Chicken Breast (300 cal)</label>
-        <input type="radio" id="beef" name="mainCourse" value="400" class="radio-input">
-        <label for="beef" class="radio-label">Beef Steak (400 cal)</label>
-        <input type="radio" id="veggies" name="mainCourse" value="250" class="radio-input">
-        <label for="veggies" class="radio-label">Grilled Vegetables (250 cal)</label>
-    </div>
-
-    <div class="question side-dish">
-        <p class="question-side-dish">Side Dish: Choose an option</p>
-        <input type="radio" id="rice" name="sideDish" value="150" class="radio-input">
-        <label for="rice" class="radio-label">Rice (150 cal)</label>
-        <input type="radio" id="potatoes" name="sideDish" value="200" class="radio-input">
-        <label for="potatoes" class="radio-label">Mashed Potatoes (200 cal)</label>
-        <input type="radio" id="salad" name="sideDish" value="100" class="radio-input">
-        <label for="salad" class="radio-label">Salad (100 cal)</label>
-    </div>
-
-    <div class="question servings">
-        <p class="question-servings">Number of Servings (1-5):</p>
-        <div class="slider-container">
-            <input type="number" id="numberInput" min="1" max="5" value="1" class="number-input">
-            <input type="range" id="numberSlider" min="1" max="5" value="1" class="range-slider">
+    <form class="form" id="mealForm">
+        <div class="form__question form__question--main-course">
+            <p class="form__question-title form__question-title--main-course">Main Course: Choose an option</p>
+            <div class="form__question-content">
+                <input type="radio" id="chicken" name="mainCourse" value="300" class="form__radio-input">
+                <label for="chicken" class="form__radio-label">Chicken Breast (300 cal)</label>
+                <input type="radio" id="beef" name="mainCourse" value="400" class="form__radio-input">
+                <label for="beef" class="form__radio-label">Beef Steak (400 cal)</label>
+                <input type="radio" id="veggies" name="mainCourse" value="250" class="form__radio-input">
+                <label for="veggies" class="form__radio-label">Grilled Vegetables (250 cal)</label>
+            </div>
         </div>
-    </div>
 
-    <div class="question extras">
-        <p class="question-extras">Extras:</p>
-        <input type="checkbox" id="extraCalc" class="checkbox-input">
-        <label for="extraCalc" class="checkbox-label">Include Dessert (+300 cal)</label>
-    </div>
+        <div class="form__question form__question--side-dish">
+            <p class="form__question-title form__question-title--side-dish">Side Dish: Choose an option</p>
+            <div class="form__question-content">
+                <input type="radio" id="rice" name="sideDish" value="150" class="form__radio-input">
+                <label for="rice" class="form__radio-label">Rice (150 cal)</label>
+                <input type="radio" id="potatoes" name="sideDish" value="200" class="form__radio-input">
+                <label for="potatoes" class="form__radio-label">Mashed Potatoes (200 cal)</label>
+                <input type="radio" id="salad" name="sideDish" value="100" class="form__radio-input">
+                <label for="salad" class="form__radio-label">Salad (100 cal)</label>
+            </div>
+        </div>
 
-    <div class="buttons">
-        <button id="resetButton" class="button">Reset</button>
-        <button id="calculateButton" class="button">Calculate</button>
-    </div>
+        <div class="form__question form__question--servings">
+            <p class="form__question-title form__question-title--servings">Number of Servings (1-5):</p>
+            <div class="form__slider-container">
+                <input type="number" id="numberInput" name="numberInput" min="1" max="5" value="1" class="form__number-input">
+                <input type="range" id="numberSlider" min="1" max="5" value="1" class="form__range-slider">
+            </div>
+        </div>
 
-    <div class="result" id="result">Total Calories: 0</div>
+        <div class="form__question form__question--extras">
+            <p class="form__question-title form__question-title--extras">Extras:</p>
+            <div class="form__question-content">
+                <input type="checkbox" id="extraCalc" name="extraCalc" class="form__checkbox-input">
+                <label for="extraCalc" class="form__checkbox-label">Include Dessert (+300 cal)</label>
+            </div>
+        </div>
+
+        <div class="form__buttons">
+            <button type="reset" class="form__button">Reset</button>
+            <button type="submit" class="form__button">Calculate</button>
+        </div>
+
+        <div class="form__result-container" id="resultContainer">
+            <div class="form__result" id="result">Total Calories: 0</div>
+        </div>
+    </form>
 </div>
 
 <script>
     const numberInput = document.getElementById('numberInput');
     const numberSlider = document.getElementById('numberSlider');
     const resultDiv = document.getElementById('result');
+    const resultContainer = document.getElementById('resultContainer');
+    const mealForm = document.getElementById('mealForm');
 
     numberInput.addEventListener('input', () => numberSlider.value = numberInput.value);
     numberSlider.addEventListener('input', () => numberInput.value = numberSlider.value);
 
-    document.getElementById('calculateButton').addEventListener('click', () => {
-        const mainCourse = document.querySelector('input[name="mainCourse"]:checked');
-        const sideDish = document.querySelector('input[name="sideDish"]:checked');
-        const numberValue = parseInt(numberInput.value);
-        const extraCalc = document.getElementById('extraCalc').checked;
+    mealForm.addEventListener('submit', (event) => {
+        event.preventDefault();
+        const formData = new FormData(mealForm);
+        const mainCourse = formData.get('mainCourse');
+        const sideDish = formData.get('sideDish');
+        const numberValue = parseInt(formData.get('numberInput'));
+        const extraCalc = formData.get('extraCalc') !== null;
 
         if (mainCourse && sideDish) {
-            let result = (parseInt(mainCourse.value) + parseInt(sideDish.value)) * numberValue;
+            let result = (parseInt(mainCourse) + parseInt(sideDish)) * numberValue;
             if (extraCalc) {
                 result += 300;
             }
             resultDiv.innerText = 'Total Calories: ' + result;
-            resultDiv.classList.add('show-result');
+            resultContainer.classList.add('form__result-container--show');
         } else {
             alert('Please make selections for all options.');
         }
     });
 
-    document.getElementById('resetButton').addEventListener('click', () => {
-        document.querySelectorAll('input[type="radio"]:checked').forEach(input => input.checked = false);
-        numberInput.value = 1;
-        numberSlider.value = 1;
-        document.getElementById('extraCalc').checked = false;
+    mealForm.addEventListener('reset', () => {
         resultDiv.innerText = 'Total Calories: 0';
-        resultDiv.classList.remove('show-result');
+        resultContainer.classList.remove('form__result-container--show');
     });
 </script>
 
